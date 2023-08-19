@@ -1,6 +1,8 @@
-/* eslint-disable jest/expect-expect */
-const fs = require('fs');
-const { execGlobal, parse } = require('../index.js');
+/*global console*/
+
+import * as fs from 'fs';
+import { execGlobal, parse } from '@bablr/regex';
+import { expect } from 'expect';
 
 const howto = fs.readFileSync('corpus/howtosmall', 'utf-8');
 
