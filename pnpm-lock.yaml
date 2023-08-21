@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@bablr/grammar': 0.0.0
-  '@bablr/miniparser': 0.0.0
+  '@bablr/grammar': github:bablr-lang/grammar#f0a39a03a03db3f921c88698f65c1a4aa0f735d5
+  '@bablr/miniparser': github:bablr-lang/miniparser#59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a
   '@iter-tools/imm-stack': ^1.1.0
   codecov: ^3.6.1
   enhanced-resolve: ^5.12.0
@@ -17,8 +17,8 @@ specifiers:
   prettier: ^2.0.5
 
 dependencies:
-  '@bablr/grammar': link:../cst-tokens/grammar
-  '@bablr/miniparser': link:../cst-tokens/miniparser
+  '@bablr/grammar': github.com/bablr-lang/grammar/f0a39a03a03db3f921c88698f65c1a4aa0f735d5
+  '@bablr/miniparser': github.com/bablr-lang/miniparser/59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a
   '@iter-tools/imm-stack': 1.1.0
   functional-red-black-tree: 1.0.1
   iter-tools-es: 7.2.1
@@ -740,6 +740,11 @@ packages:
   /escape-string-regexp/4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  /escape-string-regexp/5.0.0:
+    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /eslint-import-resolver-enhanced-resolve/1.0.5:
     resolution: {integrity: sha512-Ss07NWhqdeOHq+Jevl4f5gPqHoRKyNTSXUoLxP/dMCXUUCsowGFv7/ccJ4fMcAdeqL+WhfA/p4AYWbtY6fB0wQ==}
@@ -2437,4 +2442,18 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  github.com/bablr-lang/grammar/f0a39a03a03db3f921c88698f65c1a4aa0f735d5:
+    resolution: {tarball: https://codeload.github.com/bablr-lang/grammar/tar.gz/f0a39a03a03db3f921c88698f65c1a4aa0f735d5}
+    name: '@bablr/grammar'
+    version: 0.0.0
+    dev: false
+
+  github.com/bablr-lang/miniparser/59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a:
+    resolution: {tarball: https://codeload.github.com/bablr-lang/miniparser/tar.gz/59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a}
+    name: '@bablr/miniparser'
+    version: 0.0.0
+    dependencies:
+      escape-string-regexp: 5.0.0
     dev: false

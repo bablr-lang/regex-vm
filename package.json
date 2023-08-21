@@ -32,8 +32,8 @@
     ]
   },
   "dependencies": {
-    "@bablr/grammar": "0.0.0",
-    "@bablr/miniparser": "0.0.0",
+    "@bablr/grammar": "github:bablr-lang/grammar#f0a39a03a03db3f921c88698f65c1a4aa0f735d5",
+    "@bablr/miniparser": "github:bablr-lang/miniparser#59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2",
