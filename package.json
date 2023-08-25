@@ -32,14 +32,13 @@
     ]
   },
   "dependencies": {
-    "@bablr/grammar": "github:bablr-lang/grammar#f0a39a03a03db3f921c88698f65c1a4aa0f735d5",
     "@bablr/miniparser": "github:bablr-lang/miniparser#59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
-    "iter-tools-es": "^7.0.2",
-    "mocha": "^10.2.0"
+    "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
+    "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#a49dbe6861a82d96864ee89fbf0ec1844a8a5e8e",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",
     "eslint": "^7.32.0",
@@ -47,6 +46,7 @@
     "eslint-plugin-import": "^2.27.5",
     "expect": "^29.6.2",
     "lint-staged": "^10.2.11",
+    "mocha": "^10.2.0",
     "prettier": "^2.0.5"
   },
   "keywords": [
@@ -64,6 +64,7 @@
     "non-backtracking"
   ],
   "repository": "git@github.com:bablr-lang/regex.git",
+  "homepage": "https://github.com/bablr-lang/regex",
   "author": "Conrad Buck <conartist6@gmail.com>",
   "license": "MIT"
 }
