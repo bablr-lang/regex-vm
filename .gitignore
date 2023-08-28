@@ -1,6 +1,7 @@
 /node_modules
 .DS_Store
 .vscode
+play.js
 
 /coverage/*
 # For now. TODO: store files in LFS

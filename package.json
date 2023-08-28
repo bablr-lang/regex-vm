@@ -18,7 +18,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "test": "mocha",
+    "test": "mocha test/regex.test.js",
     "verify": "npm run lint && npm run test && codecov",
     "format": "prettier --write '**/*.{js,md}'",
     "lint": "eslint ."
@@ -32,7 +32,8 @@
     ]
   },
   "dependencies": {
-    "@bablr/miniparser": "github:bablr-lang/miniparser#59b5a6e83ea0beddb243dcb5ea4ed2f20e053d0a",
+    "@bablr/miniparser": "github:bablr-lang/miniparser#e17fcf1a2e9c89e14ee047d8f1fe5469c916179f",
+    "@bablr/miniparser-language-nonbacktracking-js-regex": "github:bablr-lang/miniparser-language-nonbacktracking-js-regex#7ab85717eccf08eb95fe54b6c5bebee8ecc78dbc",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
