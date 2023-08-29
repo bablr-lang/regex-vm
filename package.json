@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@bablr/miniparser": "github:bablr-lang/miniparser#e17fcf1a2e9c89e14ee047d8f1fe5469c916179f",
+    "@bablr/miniparser": "github:bablr-lang/miniparser#da495740e9ce1139e5ab104d9c51af42d6e75148",
     "@bablr/miniparser-language-nonbacktracking-js-regex": "github:bablr-lang/miniparser-language-nonbacktracking-js-regex#7ab85717eccf08eb95fe54b6c5bebee8ecc78dbc",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
