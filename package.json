@@ -8,9 +8,11 @@
   "type": "module",
   "exports": {
     ".": "./lib/index.js",
+    "./warmup": "./lib/warmup.js",
     "./internal/debug": "./lib/internal/debug.js",
     "./internal/engine": "./lib/internal/engine.js",
     "./async": "./lib/async/index.js",
+    "./async/warmup": "./lib/async/warmup.js",
     "./async/chunked": "./lib/async/chunked.js"
   },
   "files": [
