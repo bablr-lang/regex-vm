@@ -1,6 +1,6 @@
-# @bablr/regex
+# @bablr/regex-vm
 
-`@bablr/regex` is a fully-featured regex engine, scripted in javascript. The engine's implementation is non-backtracking, which makes it ideal for matching against streaming inputs of any kind. It is expected to be used most commonly in the building of streaming parsers, especially in conjunction with `@bablr/parserate` (coming soon!).
+`@bablr/regex-vm` is a fully-featured regex engine, scripted in javascript. The engine's implementation is non-backtracking, which makes it ideal for matching against streaming inputs of any kind. It is expected to be used most commonly in the building of streaming parsers, especially in conjunction with `@bablr/parserate` (coming soon!).
 
 Not everyone needs a streaming regex engine. If you are matching a static regex against string data, it is very likely that you should be using the native regex implementation. However if you are working on data that is fundamentally a stream and this engine may save you from having to load all the data into a string first. If perf is your only reason to use this engine, make sure to do some tests to see that you are actually gaining perf. **The engine is still quite slow!**
 
@@ -22,16 +22,16 @@ In terms of raw performance, this library is still extremely slow -- 50x - 80x s
 
 The modules are:
 
-- `/` (`@bablr/regex`) is the base module, for use when `input` is a sync iterator.
-- `/async` (`@bablr/regex/async`) is for use with async iterables of characters, such as `bablr` might produce.
-- `/async/chunked` (`@bablr/regex/async/chunked`) is meant to optimize performance when use with streams (iterables of strings, that is) such as those returned by `fs.createReadStream(path, 'utf-8')`.
+- `/` (`@bablr/regex-vm`) is the base module, for use when `input` is a sync iterator.
+- `/async` (`@bablr/regex-vm/async`) is for use with async iterables of characters, such as `bablr` might produce.
+- `/async/chunked` (`@bablr/regex-vm/async/chunked`) is meant to optimize performance when use with streams (iterables of strings, that is) such as those returned by `fs.createReadStream(path, 'utf-8')`.
 
 ### test
 
 ```js
-import { test } from '@bablr/regex';
-import { test as testAsync } from '@bablr/regex/async';
-import { test as testChunked } from '@bablr/regex/async/chunked';
+import { test } from '@bablr/regex-vm';
+import { test as testAsync } from '@bablr/regex-vm/async';
+import { test as testChunked } from '@bablr/regex-vm/async/chunked';
 
 const didMatch = test(pattern, input);
 const didMatch = await testAsync(pattern, input);
@@ -43,9 +43,9 @@ const didMatch = await testChunked(pattern, input);
 ### exec
 
 ```js
-import { exec } from '@bablr/regex';
-import { exec as execAsync } from '@bablr/regex/async';
-import { exec as execChunked } from '@bablr/regex/async/chunked';
+import { exec } from '@bablr/regex-vm';
+import { exec as execAsync } from '@bablr/regex-vm/async';
+import { exec as execChunked } from '@bablr/regex-vm/async/chunked';
 
 const captures = exec(pattern, input);
 const captures = await execAsync(pattern, input);
@@ -67,9 +67,9 @@ if ($1 !== undefined) console.log(`$1: '${$1}'`);
 
 <!--prettier-ignore-->
 ```js
-import { execGlobal } from '@bablr/regex';
-import { execGlobal as execGlobalAsync } from '@bablr/regex/async';
-import { execGlobal as execGlobalChunked } from '@bablr/regex/async/chunked';
+import { execGlobal } from '@bablr/regex-vm';
+import { execGlobal as execGlobalAsync } from '@bablr/regex-vm/async';
+import { execGlobal as execGlobalChunked } from '@bablr/regex-vm/async/chunked';
 
 const [...matches] = execGlobal(pattern, input);
 for await (const match of execGlobal(pattern, input)) { }

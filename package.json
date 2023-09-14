@@ -1,5 +1,5 @@
 {
-  "name": "@bablr/regex",
+  "name": "@bablr/regex-vm",
   "version": "0.0.0",
   "description": "A fully streaming regular expression engine",
   "engines": {
@@ -64,8 +64,8 @@
     "streaming",
     "non-backtracking"
   ],
-  "repository": "git@github.com:bablr-lang/regex.git",
-  "homepage": "https://github.com/bablr-lang/regex",
+  "repository": "git@github.com:bablr-lang/regex-vm.git",
+  "homepage": "https://github.com/bablr-lang/regex-vm",
   "author": "Conrad Buck <conartist6@gmail.com>",
   "license": "MIT"
 }
