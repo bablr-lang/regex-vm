@@ -1,15 +1,16 @@
-import { exec, execGlobal, parse } from '@bablr/regex';
+import { exec, execGlobal } from '@bablr/regex-vm';
+import { re } from '@bablr/boot';
 import { expect } from 'expect';
 
 describe('exec', () => {
   it('[emtpy]', () => {
-    const exp = parse('//');
+    const exp = re`//`;
     expect(exec(exp, '')).toEqual(['']);
     expect(exec(exp, 'f')).toEqual(['']);
   });
 
   it('f', () => {
-    const exp = parse('/f/');
+    const exp = re`/f/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, 'ff')).toEqual(['f']);
@@ -17,21 +18,21 @@ describe('exec', () => {
   });
 
   it('^f', () => {
-    const exp = parse('/^f/');
+    const exp = re`/^f/`;
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, 'ff')).toEqual(['f']);
     expect(exec(exp, 'of')).toEqual([]);
   });
 
   it('f$', () => {
-    const exp = parse('/f$/');
+    const exp = re`/f$/`;
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, 'fo')).toEqual([]);
     expect(exec(exp, 'of')).toEqual(['f']);
   });
 
   it('foo', () => {
-    const exp = parse('/foo/');
+    const exp = re`/foo/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'foo')).toEqual(['foo']);
     expect(exec(exp, 'food')).toEqual(['foo']);
@@ -39,43 +40,43 @@ describe('exec', () => {
   });
 
   it('()', () => {
-    const exp = parse('/()/');
+    const exp = re`/()/`;
     expect(exec(exp, '')).toEqual(['', '']);
     expect(exec(exp, 'a')).toEqual(['', '']);
   });
 
   it('(ab)', () => {
-    const exp = parse('/(ab)/');
+    const exp = re`/(ab)/`;
     expect(exec(exp, 'ab')).toEqual(['ab', 'ab']);
     expect(exec(exp, 'a')).toEqual([]);
   });
 
   it('(a)(b)', () => {
-    const exp = parse('/(a)(b)/');
+    const exp = re`/(a)(b)/`;
     expect(exec(exp, 'ab')).toEqual(['ab', 'a', 'b']);
     expect(exec(exp, 'aab')).toEqual(['ab', 'a', 'b']);
   });
 
   it('a|ab', () => {
-    const exp = parse('/a|ab/');
+    const exp = re`/a|ab/`;
     expect(exec(exp, 'ab')).toEqual(['a']);
     expect(exec(exp, 'a')).toEqual(['a']);
   });
 
   it('ab|a', () => {
-    const exp = parse('/ab|a/');
+    const exp = re`/ab|a/`;
     expect(exec(exp, 'ab')).toEqual(['ab']);
     expect(exec(exp, 'a')).toEqual(['a']);
   });
 
   it('|', () => {
-    expect(exec(parse('/|/'), '')).toEqual(['']);
-    expect(exec(parse('/a|/'), 'a')).toEqual(['a']);
-    expect(exec(parse('/|a/'), 'a')).toEqual(['']);
+    expect(exec(re`/|/`, '')).toEqual(['']);
+    expect(exec(re`/a|/`, 'a')).toEqual(['a']);
+    expect(exec(re`/|a/`, 'a')).toEqual(['']);
   });
 
   it('f.o', () => {
-    const exp = parse('/f.o/');
+    const exp = re`/f.o/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'foo')).toEqual(['foo']);
     expect(exec(exp, 'f\no')).toEqual([]);
@@ -84,33 +85,33 @@ describe('exec', () => {
   });
 
   it('.*', () => {
-    const exp = parse('/.*/');
+    const exp = re`/.*/`;
     expect(exec(exp, '')).toEqual(['']);
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, 'foo')).toEqual(['foo']);
   });
 
   it('(.*)*', () => {
-    const exp = parse('/(.*)*/');
+    const exp = re`/(.*)*/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
     expect(exec(exp, 'f')).toEqual(['f', 'f']);
   });
 
   it('\\.', () => {
-    const exp = parse('/\\./');
+    const exp = re`/\./`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, '.')).toEqual(['.']);
     expect(exec(exp, 'f')).toEqual([]);
   });
 
   it('.*\\.', () => {
-    const exp = parse('/.*\\./');
+    const exp = re`/.*\./`;
     expect(exec(exp, '.')).toEqual(['.']);
     expect(exec(exp, '..')).toEqual(['..']);
   });
 
   it('(foo)', () => {
-    const exp = parse('/(foo)/');
+    const exp = re`/(foo)/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'foo')).toEqual(['foo', 'foo']);
     expect(exec(exp, 'food')).toEqual(['foo', 'foo']);
@@ -119,7 +120,7 @@ describe('exec', () => {
   });
 
   it('(ab)+', () => {
-    const exp = parse('/(ab)+/');
+    const exp = re`/(ab)+/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'ab')).toEqual(['ab', 'ab']);
     expect(exec(exp, 'aba')).toEqual(['ab', 'ab']);
@@ -127,25 +128,25 @@ describe('exec', () => {
   });
 
   it('(ab|a)+', () => {
-    const exp = parse('/(ab|a)+/');
+    const exp = re`/(ab|a)+/`;
     expect(exec(exp, 'aab')).toEqual(['aab', 'ab']);
     expect(exec(exp, 'aba')).toEqual(['aba', 'a']);
     expect(exec(exp, 'abc')).toEqual(['ab', 'ab']);
   });
 
   it('(a)|', () => {
-    const exp = parse('/(a)|/');
+    const exp = re`/(a)|/`;
     expect(exec(exp, 'a')).toEqual(['a', 'a']);
     expect(exec(exp, 'b')).toEqual(['', undefined]);
   });
 
   it('(a(bc|b))c', () => {
-    const exp = parse('/(a(bc|b))c/');
+    const exp = re`/(a(bc|b))c/`;
     expect(exec(exp, 'abc')).toEqual(['abc', 'ab', 'b']);
   });
 
   it('f{1,2}', () => {
-    const exp = parse('/f{1,2}/');
+    const exp = re`/f{1,2}/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, 'ff')).toEqual(['ff']);
@@ -153,7 +154,7 @@ describe('exec', () => {
   });
 
   it('(f{1,2})*', () => {
-    const exp = parse('/(f{1,2})*/');
+    const exp = re`/(f{1,2})*/`;
     expect(exec(exp, 'f')).toEqual(['f', 'f']);
     expect(exec(exp, 'ff')).toEqual(['ff', 'ff']);
     expect(exec(exp, 'fff')).toEqual(['fff', 'f']);
@@ -161,12 +162,12 @@ describe('exec', () => {
   });
 
   it('(h{1,2}a)*', () => {
-    const exp = parse('/(h{1,2}a)*/');
+    const exp = re`/(h{1,2}a)*/`;
     expect(exec(exp, 'hahaha')).toEqual(['hahaha', 'ha']);
   });
 
   it('.*x', () => {
-    const exp = parse('/.*x/');
+    const exp = re`/.*x/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, 'a')).toEqual([]);
     expect(exec(exp, 'x')).toEqual(['x']);
@@ -174,12 +175,12 @@ describe('exec', () => {
   });
 
   it('()*', () => {
-    const exp = parse('/()*/');
+    const exp = re`/()*/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
   });
 
   it('\\w', () => {
-    const exp = parse('/\\w/');
+    const exp = re`/\w/`;
     expect(exec(exp, ' ')).toEqual([]);
     expect(exec(exp, '0')).toEqual(['0']);
     expect(exec(exp, '1')).toEqual(['1']);
@@ -194,13 +195,13 @@ describe('exec', () => {
   });
 
   it('\\W', () => {
-    const exp = parse('/\\W/');
+    const exp = re`/\W/`;
     expect(exec(exp, ' ')).toEqual([' ']);
     expect(exec(exp, '0')).toEqual([]);
   });
 
   it('\\d', () => {
-    const exp = parse('/\\d/');
+    const exp = re`/\d/`;
     expect(exec(exp, 'd')).toEqual([]);
     expect(exec(exp, '0')).toEqual(['0']);
     expect(exec(exp, '1')).toEqual(['1']);
@@ -208,40 +209,40 @@ describe('exec', () => {
   });
 
   it('\\D', () => {
-    const exp = parse('/\\D/');
+    const exp = re`/\D/`;
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, '0')).toEqual([]);
   });
 
   it('\\s', () => {
-    const exp = parse('/\\s/');
+    const exp = re`/\s/`;
     expect(exec(exp, 's')).toEqual([]);
     expect(exec(exp, ' ')).toEqual([' ']);
     expect(exec(exp, '\u2028')).toEqual(['\u2028']);
   });
 
   it('\\S', () => {
-    const exp = parse('/\\S/');
+    const exp = re`/\S/`;
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, ' ')).toEqual([]);
   });
 
   it('\\b', () => {
-    const exp = parse('/\\b/');
+    const exp = re`/\b/`;
     expect(exec(exp, '')).toEqual([]);
     expect(exec(exp, ' ')).toEqual([]);
     expect(exec(exp, 'f')).toEqual(['']);
   });
 
   it('\\bf\\b', () => {
-    const exp = parse('/\\bf\\b/');
+    const exp = re`/\bf\b/`;
     expect(exec(exp, 'f')).toEqual(['f']);
     expect(exec(exp, ' f ')).toEqual(['f']);
     expect(exec(exp, 'ofo')).toEqual([]);
   });
 
   it('[a-z]', () => {
-    const exp = parse('/[a-z]/');
+    const exp = re`/[a-z]/`;
     expect(exec(exp, 'a')).toEqual(['a']);
     expect(exec(exp, 'b')).toEqual(['b']);
     expect(exec(exp, 'z')).toEqual(['z']);
@@ -250,7 +251,7 @@ describe('exec', () => {
   });
 
   it('(a)?', () => {
-    const exp = parse('/(a)?/');
+    const exp = re`/(a)?/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
     expect(exec(exp, 'a')).toEqual(['a', 'a']);
   });
@@ -259,31 +260,31 @@ describe('exec', () => {
 describe('execGlobal', () => {
   describe('when pattern is not global', () => {
     it('.', () => {
-      const exp = parse('/./');
+      const exp = re`/./`;
       expect([...execGlobal(exp, 'abc')]).toEqual([['a']]);
     });
   });
 
   describe('when pattern is global', () => {
     it('.', () => {
-      const exp = parse('/./g');
+      const exp = re`/./g`;
       expect([...execGlobal(exp, 'abc')]).toEqual([['a'], ['b'], ['c']]);
     });
 
     it('ab|a', () => {
-      const exp = parse('/ab|a/g');
+      const exp = re`/ab|a/g`;
       expect([...execGlobal(exp, 'aa')]).toEqual([['a'], ['a']]);
     });
 
     it('abb|a', () => {
-      const exp = parse('/abb|a/g');
+      const exp = re`/abb|a/g`;
       expect([...execGlobal(exp, 'aa')]).toEqual([['a'], ['a']]);
     });
   });
 
   describe('m flag', () => {
     it('^f multiline', () => {
-      const exp = parse('/^f/m');
+      const exp = re`/^f/m`;
       expect(exec(exp, 'f')).toEqual(['f']);
       expect(exec(exp, 'of')).toEqual([]);
       expect(exec(exp, '\rf')).toEqual(['f']);
@@ -291,7 +292,7 @@ describe('execGlobal', () => {
     });
 
     it('f$ multiline', () => {
-      const exp = parse('/f$/m');
+      const exp = re`/f$/m`;
       expect(exec(exp, 'f')).toEqual(['f']);
       expect(exec(exp, 'fo')).toEqual([]);
       expect(exec(exp, '\rf')).toEqual(['f']);
@@ -301,7 +302,7 @@ describe('execGlobal', () => {
 
   describe('s flag', () => {
     it('f.o', () => {
-      const exp = parse('/f.o/s');
+      const exp = re`/f.o/s`;
       expect(exec(exp, '')).toEqual([]);
       expect(exec(exp, 'foo')).toEqual(['foo']);
       expect(exec(exp, 'f\no')).toEqual(['f\no']);
@@ -310,7 +311,7 @@ describe('execGlobal', () => {
     });
 
     it('.*', () => {
-      const exp = parse('/.*/s');
+      const exp = re`/.*/s`;
       expect(exec(exp, 'a\nb\nc')).toEqual(['a\nb\nc']);
       expect(exec(exp, '\n\n\n')).toEqual(['\n\n\n']);
       expect(exec(exp, '\r\n\r\n')).toEqual(['\r\n\r\n']);
