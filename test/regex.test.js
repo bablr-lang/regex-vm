@@ -187,6 +187,11 @@ describe('exec', () => {
     expect(exec(exp, 'b')).toEqual(['b']);
   });
 
+  it('/[^\\n]/', () => {
+    const exp = re`/[^\n]/`;
+    expect(exec(exp, '1')).toEqual(['1']);
+  });
+
   it('()*', () => {
     const exp = re`/()*/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
