@@ -169,6 +169,13 @@ describe('exec', () => {
     expect(exec(exp, 'ax')).toEqual(['ax']);
   });
 
+  it('ab*?.', () => {
+    const exp = re`/ab*?./`;
+    expect(exec(exp, 'a')).toEqual([]);
+    expect(exec(exp, 'ab')).toEqual(['ab']);
+    expect(exec(exp, 'abb')).toEqual(['ab']);
+  });
+
   it('[--\\.]', () => {
     const exp = re`/[--\.]/`;
     expect(exec(exp, '-')).toEqual(['-']);
