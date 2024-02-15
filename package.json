@@ -34,12 +34,13 @@
     ]
   },
   "dependencies": {
+    "@bablr/agast-helpers": "github:bablr-lang/agast-helpers#8b57f2971fc91f6dd4e23ec626a77c931c877786",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
-    "@bablr/boot": "0.1.7",
+    "@bablr/boot": "github:bablr-lang/boot#64184e83c8ef575d7e9bcf2b5417f585382ce09a",
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#a49dbe6861a82d96864ee89fbf0ec1844a8a5e8e",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@bablr/agast-helpers':
+    specifier: github:bablr-lang/agast-helpers#8b57f2971fc91f6dd4e23ec626a77c931c877786
+    version: github.com/bablr-lang/agast-helpers/8b57f2971fc91f6dd4e23ec626a77c931c877786
   '@iter-tools/imm-stack':
     specifier: ^1.1.0
     version: 1.1.0
@@ -17,8 +20,8 @@ dependencies:
 
 devDependencies:
   '@bablr/boot':
-    specifier: 0.1.7
-    version: 0.1.7
+    specifier: github:bablr-lang/boot#64184e83c8ef575d7e9bcf2b5417f585382ce09a
+    version: github.com/bablr-lang/boot/64184e83c8ef575d7e9bcf2b5417f585382ce09a
   '@bablr/eslint-config-base':
     specifier: github:bablr-lang/eslint-config-base#a49dbe6861a82d96864ee89fbf0ec1844a8a5e8e
     version: github.com/bablr-lang/eslint-config-base/a49dbe6861a82d96864ee89fbf0ec1844a8a5e8e(eslint@7.32.0)
@@ -310,18 +313,6 @@ packages:
   /@bablr/boot-helpers@0.1.2:
     resolution: {integrity: sha512-v0QAMuaQJgYsclldRG9hsJFHPw7YJb0JVP2g4cL30N0T/AmNrUfqj/jwf+kMUl6lVSHIZNPc8pwMAVXPC2niFg==}
     engines: {node: '>=12.0.0'}
-    dev: true
-
-  /@bablr/boot@0.1.7:
-    resolution: {integrity: sha512-w6cDH1UH4i1stv8pyZ3iPm2Iq8Fwz43s7JFPHDQoSymmnXhcv6zDTNdU/1ebwMv4NeP1avMpuZTEAzEAxl+V2A==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@babel/helper-module-imports': 7.22.15
-      '@babel/template': 7.22.15
-      '@babel/types': 7.23.0
-      '@bablr/boot-helpers': 0.1.2
-      escape-string-regexp: 4.0.0
-      iter-tools-es: 7.5.3
     dev: true
 
   /@eslint/eslintrc@0.4.3:
@@ -2844,6 +2835,28 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  github.com/bablr-lang/agast-helpers/8b57f2971fc91f6dd4e23ec626a77c931c877786:
+    resolution: {tarball: https://codeload.github.com/bablr-lang/agast-helpers/tar.gz/8b57f2971fc91f6dd4e23ec626a77c931c877786}
+    name: '@bablr/agast-helpers'
+    version: 0.0.0
+    dependencies:
+      '@iter-tools/imm-stack': 1.1.0
+    dev: false
+
+  github.com/bablr-lang/boot/64184e83c8ef575d7e9bcf2b5417f585382ce09a:
+    resolution: {tarball: https://codeload.github.com/bablr-lang/boot/tar.gz/64184e83c8ef575d7e9bcf2b5417f585382ce09a}
+    name: '@bablr/boot'
+    version: 0.0.0
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@babel/helper-module-imports': 7.22.15
+      '@babel/template': 7.22.15
+      '@babel/types': 7.23.0
+      '@bablr/boot-helpers': 0.1.2
+      escape-string-regexp: 4.0.0
+      iter-tools-es: 7.5.3
     dev: true
 
   github.com/bablr-lang/eslint-config-base/a49dbe6861a82d96864ee89fbf0ec1844a8a5e8e(eslint@7.32.0):
