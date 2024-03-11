@@ -1,12 +1,8 @@
 /node_modules
-.DS_Store
-.vscode
-play.js
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
 
 /coverage/*
 # For now. TODO: store files in LFS
 /corpus
-
-/report.*
-/dist
-yarn-*.log
