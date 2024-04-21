@@ -36,7 +36,7 @@
   "dependencies": {
     "@bablr/agast-helpers": "github:bablr-lang/agast-helpers#06c2deeda4804fcb6a5022cf2db677f8e89eb249",
     "@bablr/coroutine": "github:bablr-lang/coroutine#2342d82713731288034df588f11f540d1b76603d",
-    "@bablr/helpers": "github:bablr-lang/helpers#7315ea97e7a5fd3890ba76ea50ac689d01cbc446",
+    "@bablr/helpers": "github:bablr-lang/bablr-helpers#51d9d4ece66bd027ab08013d8ecab32c73f8d7fa",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
