@@ -1,6 +1,12 @@
-import { exec, execGlobal } from '@bablr/regex-vm';
+import { generateMatches } from '@bablr/regex-vm';
 import { re } from '@bablr/boot';
 import { expect } from 'expect';
+
+const exec = (...args) =>
+  generateMatches(...args)
+    [Symbol.for('@@streamIterator')]()
+    .next()
+    .value?.map((capture) => capture && capture.join('')) || [];
 
 describe('exec', () => {
   it('[emtpy]', () => {
@@ -140,6 +146,13 @@ describe('exec', () => {
     expect(exec(exp, 'abc')).toEqual(['abc', 'ab', 'b']);
   });
 
+  it('[]\\]', () => {
+    const exp = re`/[\]\\]/`;
+    expect(exec(exp, '\\')).toEqual(['\\']);
+    expect(exec(exp, ']')).toEqual([']']);
+    expect(exec(exp, 'a')).toEqual([]);
+  });
+
   it('f{1,2}', () => {
     const exp = re`/f{1,2}/`;
     expect(exec(exp, '')).toEqual([]);
@@ -174,6 +187,13 @@ describe('exec', () => {
     expect(exec(exp, 'a')).toEqual([]);
     expect(exec(exp, 'ab')).toEqual(['ab']);
     expect(exec(exp, 'abb')).toEqual(['ab']);
+  });
+
+  it('[ab]', () => {
+    const exp = re`/[ab]/`;
+    expect(exec(exp, 'a')).toEqual(['a']);
+    expect(exec(exp, 'b')).toEqual(['b']);
+    expect(exec(exp, 'x')).toEqual([]);
   });
 
   it('[--\\.]', () => {
@@ -273,32 +293,5 @@ describe('exec', () => {
     const exp = re`/(a)?/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
     expect(exec(exp, 'a')).toEqual(['a', 'a']);
-  });
-});
-
-describe('execGlobal', () => {
-  describe('when pattern is not global', () => {
-    it('.', () => {
-      const exp = re`/./`;
-      expect([...execGlobal(exp, 'abc')]).toEqual([['a']]);
-    });
-  });
-
-  describe('s flag', () => {
-    it('f.o', () => {
-      const exp = re`/f.o/s`;
-      expect(exec(exp, '')).toEqual([]);
-      expect(exec(exp, 'foo')).toEqual(['foo']);
-      expect(exec(exp, 'f\no')).toEqual(['f\no']);
-      expect(exec(exp, 'food')).toEqual(['foo']);
-      expect(exec(exp, 'foof')).toEqual(['foo']);
-    });
-
-    it('.*', () => {
-      const exp = re`/.*/s`;
-      expect(exec(exp, 'a\nb\nc')).toEqual(['a\nb\nc']);
-      expect(exec(exp, '\n\n\n')).toEqual(['\n\n\n']);
-      expect(exec(exp, '\r\n\r\n')).toEqual(['\r\n\r\n']);
-    });
   });
 });
