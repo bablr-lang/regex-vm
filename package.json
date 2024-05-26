@@ -9,7 +9,9 @@
   "exports": {
     ".": "./lib/index.js"
   },
-  "files": ["lib/**/*.js"],
+  "files": [
+    "lib/**/*.js"
+  ],
   "sideEffects": false,
   "scripts": {
     "test": "mocha test/regex.test.js",
@@ -18,18 +20,22 @@
     "lint": "eslint ."
   },
   "lint-staged": {
-    "*.js": ["eslint"],
-    "*.md": ["prettier -c"]
+    "*.js": [
+      "eslint"
+    ],
+    "*.md": [
+      "prettier -c"
+    ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "github:bablr-lang/agast-helpers#5a704bd826ed2e8ab6ef0419571433996cea2894",
-    "@bablr/coroutine": "github:bablr-lang/coroutine#071b090d0ab7c47cc99a8d064d7b5a12d26bb16f",
+    "@bablr/agast-helpers": "0.1.0",
+    "@bablr/coroutine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
-    "@bablr/boot": "github:bablr-lang/boot#7667feb1c9ce0fea1358a854c1dd05b4affd985a",
+    "@bablr/boot": "0.2.0",
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#d834ccc52795d6c3b96ecc6c419960fceed221a6",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",
