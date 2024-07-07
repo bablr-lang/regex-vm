@@ -8,7 +8,7 @@ const exec = (...args) =>
     .next()
     .value?.map((capture) => capture && capture.join('')) || [];
 
-describe('exec', () => {
+describe('regex-vm', () => {
   it('[emtpy]', () => {
     const exp = re`//`;
     expect(exec(exp, '')).toEqual(['']);
@@ -196,8 +196,8 @@ describe('exec', () => {
     expect(exec(exp, 'x')).toEqual([]);
   });
 
-  it('[--\\.]', () => {
-    const exp = re`/[--\.]/`;
+  it('[--.]', () => {
+    const exp = re`/[--.]/`;
     expect(exec(exp, '-')).toEqual(['-']);
     expect(exec(exp, '.')).toEqual(['.']);
     expect(exec(exp, 'x')).toEqual([]);
