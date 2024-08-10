@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "0.1.0",
+    "@bablr/agast-helpers": "0.3.0",
     "@bablr/coroutine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
