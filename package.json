@@ -35,7 +35,7 @@
     "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
-    "@bablr/boot": "0.3.0",
+    "@bablr/boot": "0.4.0",
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#d834ccc52795d6c3b96ecc6c419960fceed221a6",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",
