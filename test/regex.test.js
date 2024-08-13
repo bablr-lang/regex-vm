@@ -2,11 +2,13 @@ import { generateMatches } from '@bablr/regex-vm';
 import { re } from '@bablr/boot';
 import { expect } from 'expect';
 
+const str = (iter) => iter && [...iter].join('');
+
 const exec = (...args) =>
   generateMatches(...args)
     [Symbol.for('@@streamIterator')]()
     .next()
-    .value?.map((capture) => capture && capture.join('')) || [];
+    .value?.map((capture) => str(capture)) || [];
 
 describe('regex-vm', () => {
   it('[emtpy]', () => {
@@ -293,5 +295,11 @@ describe('regex-vm', () => {
     const exp = re`/(a)?/`;
     expect(exec(exp, '')).toEqual(['', undefined]);
     expect(exec(exp, 'a')).toEqual(['a', 'a']);
+  });
+
+  it.skip('/[^\\r\\n\\"]+/', () => {
+    const exp = re`/[^\r\n\\"]+/`;
+
+    expect(exec(exp, 'a'.repeat(100000))).toEqual(['a'.repeat(100000)]);
   });
 });
