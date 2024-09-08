@@ -30,13 +30,14 @@
   "dependencies": {
     "@bablr/agast-helpers": "0.3.0",
     "@bablr/coroutine": "0.1.0",
+    "@bablr/pattern-engine": "github:bablr-lang/pattern-engine#5a37111f29bd1128ce20d95f6390ef51529bb21d",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
     "@bablr/boot": "0.4.0",
-    "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#d834ccc52795d6c3b96ecc6c419960fceed221a6",
+    "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#49f5952efed27f94ee9b94340eb1563c440bf64e",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",
     "eslint": "^7.32.0",
