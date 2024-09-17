@@ -11,7 +11,7 @@ const exec = (...args) =>
     .value?.map((capture) => str(capture)) || [];
 
 describe('regex-vm', () => {
-  it('[emtpy]', () => {
+  it('[empty]', () => {
     const exp = re`//`;
     expect(exec(exp, '')).toEqual(['']);
     expect(exec(exp, 'f')).toEqual(['']);
@@ -148,7 +148,7 @@ describe('regex-vm', () => {
     expect(exec(exp, 'abc')).toEqual(['abc', 'ab', 'b']);
   });
 
-  it('[]\\]', () => {
+  it('[\\]\\\\]', () => {
     const exp = re`/[\]\\]/`;
     expect(exec(exp, '\\')).toEqual(['\\']);
     expect(exec(exp, ']')).toEqual([']']);
