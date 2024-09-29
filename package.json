@@ -30,7 +30,7 @@
   "dependencies": {
     "@bablr/agast-helpers": "0.4.0",
     "@bablr/coroutine": "0.1.0",
-    "@bablr/pattern-engine": "github:bablr-lang/pattern-engine#5a37111f29bd1128ce20d95f6390ef51529bb21d",
+    "@bablr/pattern-engine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
     "functional-red-black-tree": "^1.0.1",
     "iter-tools-es": "^7.0.2"
