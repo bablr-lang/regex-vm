@@ -2,7 +2,13 @@ import { generateMatches } from '@bablr/regex-vm';
 import { re } from '@bablr/boot';
 import { expect } from 'expect';
 
-const str = (iter) => iter && [...iter].join('');
+const str = (iter) =>
+  iter &&
+  [...iter]
+    .map((value) => {
+      return value.type === Symbol.for('LiteralTag') ? value.value : '';
+    })
+    .join('');
 
 const exec = (...args) =>
   generateMatches(...args)

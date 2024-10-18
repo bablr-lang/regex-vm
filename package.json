@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "0.4.0",
+    "@bablr/agast-helpers": "0.5.0",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
@@ -36,7 +36,7 @@
     "iter-tools-es": "^7.0.2"
   },
   "devDependencies": {
-    "@bablr/boot": "0.5.0",
+    "@bablr/boot": "^0.6.0",
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#49f5952efed27f94ee9b94340eb1563c440bf64e",
     "codecov": "^3.6.1",
     "enhanced-resolve": "^5.12.0",
