@@ -22,7 +22,7 @@
     "*.md": ["prettier -c"]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "^0.5.0",
+    "@bablr/agast-helpers": "^0.5.3",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
