@@ -9,20 +9,26 @@
   "exports": {
     ".": "./lib/index.js"
   },
-  "files": ["lib/**/*.js"],
+  "files": [
+    "lib/**/*.js"
+  ],
   "sideEffects": false,
   "scripts": {
-    "test": "mocha test/regex.test.js",
+    "test": "mocha test/*.test.js",
     "verify": "npm run lint && npm run test && codecov",
     "format": "prettier --write '**/*.{js,md}'",
     "lint": "eslint ."
   },
   "lint-staged": {
-    "*.js": ["eslint"],
-    "*.md": ["prettier -c"]
+    "*.js": [
+      "eslint"
+    ],
+    "*.md": [
+      "prettier -c"
+    ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "^0.5.3",
+    "@bablr/agast-helpers": "0.5.0",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.1.0",
     "@iter-tools/imm-stack": "^1.1.0",
