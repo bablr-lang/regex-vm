@@ -1,6 +1,8 @@
 import { generateMatches } from '@bablr/regex-vm';
 import { re } from '@bablr/boot';
+import * as sym from '@bablr/pattern-engine/symbols';
 import { expect } from 'expect';
+import { StreamIterable } from '@bablr/agast-helpers/stream';
 
 const str = (iter) =>
   iter &&
@@ -10,8 +12,18 @@ const str = (iter) =>
     })
     .join('');
 
-const exec = (...args) =>
-  generateMatches(...args)
+function* __wrap(source) {
+  yield sym.BOS;
+  yield* source;
+  yield sym.EOS;
+}
+
+const wrap = (source) => {
+  return new StreamIterable(__wrap(source));
+};
+
+const exec = (pattern, source) =>
+  generateMatches(pattern, wrap(source))
     [Symbol.for('@@streamIterator')]()
     .next()
     .value?.map((capture) => str(capture)) || [];
