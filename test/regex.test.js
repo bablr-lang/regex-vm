@@ -3,6 +3,7 @@ import { re } from '@bablr/boot';
 import * as sym from '@bablr/pattern-engine/symbols';
 import { expect } from 'expect';
 import { StreamIterable } from '@bablr/agast-helpers/stream';
+import { streamIteratorSymbol } from '@bablr/stream-iterator';
 
 const str = (iter) =>
   iter &&
@@ -24,7 +25,7 @@ const wrap = (source) => {
 
 const exec = (pattern, source) =>
   generateMatches(pattern, wrap(source))
-    [Symbol.for('@@streamIterator')]()
+    [streamIteratorSymbol]()
     .next()
     .value?.map((capture) => str(capture)) || [];
 
