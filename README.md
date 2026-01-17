@@ -1,16 +1,6 @@
 # @bablr/regex-vm
 
-`@bablr/regex-vm` is a fully-featured regex engine, scripted in javascript. The engine's implementation is non-backtracking, which makes it ideal for matching against streaming inputs of any kind. It is expected to be used most commonly in the building of streaming parsers, especially in conjunction with `@bablr/parserate` (coming soon!).
-
-Not everyone needs a streaming regex engine. If you are matching a static regex against string data, it is very likely that you should be using the native regex implementation. However if you are working on data that is fundamentally a stream and this engine may save you from having to load all the data into a string first. If perf is your only reason to use this engine, make sure to do some tests to see that you are actually gaining perf. **The engine is still quite slow!**
-
-## Performance
-
-The non-backtracking design also means the engine is not vulnerable to the phenomenon known as catastrophic backtracking, which can make some not-uncommon naively written patterns have essentially infinite time cost to evaluate. This makes the engine more suitable for use with user-supplied patterns, especially when combined with tools like glob syntaxes which can offer users some of the power of regex (and compile to regexe) but without the steep learning curve of regex syntax.
-
-While the engine is not vulnerable to catastrophic backtracking, it can still be attacked or misued. Bad patterns will tend to cause the engine's match state to balloon in size, consuming lots of memory.
-
-In terms of raw performance, this library is still extremely slow -- 50x - 80x slower than native regex for normal patterns, and currently up to 2000x slower for certain patterns that do not contain any branches. Current work is on closing this perf gap, and there is reason to think it can be narrowed significantly.
+`@bablr/regex-vm` is a fully-featured streaming regex implementation.
 
 ## API
 
@@ -18,24 +8,14 @@ In terms of raw performance, this library is still extremely slow -- 50x - 80x s
 [exec](#exec)(pattern, input)  
 [execGlobal](#execglobal)(pattern, input)
 
-**Note that this API is exported as three separate submodules, each with a slightly different purpose!**
-
-The modules are:
-
-- `/` (`@bablr/regex-vm`) is the base module, for use when `input` is a sync iterator.
-- `/async` (`@bablr/regex-vm/async`) is for use with async iterables of characters, such as `bablr` might produce.
-- `/async/chunked` (`@bablr/regex-vm/async/chunked`) is meant to optimize performance when use with streams (iterables of strings, that is) such as those returned by `fs.createReadStream(path, 'utf-8')`.
+`input` is expected to be a stream iterator
 
 ### test
 
 ```js
 import { test } from '@bablr/regex-vm';
-import { test as testAsync } from '@bablr/regex-vm/async';
-import { test as testChunked } from '@bablr/regex-vm/async/chunked';
 
 const didMatch = test(pattern, input);
-const didMatch = await testAsync(pattern, input);
-const didMatch = await testChunked(pattern, input);
 ```
 
 `didMatch` will be `true` if `pattern` matches at some location in `input`.
@@ -44,12 +24,8 @@ const didMatch = await testChunked(pattern, input);
 
 ```js
 import { exec } from '@bablr/regex-vm';
-import { exec as execAsync } from '@bablr/regex-vm/async';
-import { exec as execChunked } from '@bablr/regex-vm/async/chunked';
 
 const captures = exec(pattern, input);
-const captures = await execAsync(pattern, input);
-const captures = await execChunked(pattern, input);
 // 1-indexed by lexical order of `(` ($2 is b)
 const [match, $1, $2, $3] = exec(/(a(b))(c)/, input);
 ```
@@ -68,15 +44,11 @@ if ($1 !== undefined) console.log(`$1: '${$1}'`);
 <!--prettier-ignore-->
 ```js
 import { execGlobal } from '@bablr/regex-vm';
-import { execGlobal as execGlobalAsync } from '@bablr/regex-vm/async';
-import { execGlobal as execGlobalChunked } from '@bablr/regex-vm/async/chunked';
 
 const [...matches] = execGlobal(pattern, input);
-for await (const match of execGlobal(pattern, input)) { }
-for await (const match of execGlobalChunked(pattern, input)) { }
 ```
 
-`matches` is an iterable of match arrays (`Iterable[[match, ...captures], ...matches]`). If `pattern` is not found in `input` the iterable of matches will be empty. `execGlobal` interacts with the `global` (`/g`) flag. **If the `/g` flag is not present the `matches` iterable will never contain more than one match.**
+`matches` is an iterable of match arrays (`StreamIterable[[match, ...captures], ...matches]`). If `pattern` is not found in `input` the iterable of matches will be empty. `execGlobal` interacts with the `global` (`/g`) flag. **If the `/g` flag is not present the `matches` iterable will never contain more than one match.**
 
 ## Patterns and flags
 
