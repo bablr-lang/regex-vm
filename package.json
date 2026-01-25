@@ -9,7 +9,9 @@
   "exports": {
     ".": "./lib/index.js"
   },
-  "files": ["lib/**/*.js"],
+  "files": [
+    "lib/**/*.js"
+  ],
   "sideEffects": false,
   "scripts": {
     "test": "mocha test/*.test.js",
@@ -18,18 +20,21 @@
     "lint": "eslint ."
   },
   "lint-staged": {
-    "*.js": ["eslint"],
-    "*.md": ["prettier -c"]
+    "*.js": [
+      "eslint"
+    ],
+    "*.md": [
+      "prettier -c"
+    ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "0.10.0",
-    "@bablr/agast-vm-helpers": "0.10.0",
+    "@bablr/agast-helpers": "0.10.2",
+    "@bablr/agast-vm-helpers": "0.10.2",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.2.0",
     "@bablr/stream-iterator": "2.0.0",
     "@iter-tools/imm-stack": "1.2.0",
-    "functional-red-black-tree": "1.0.1",
-    "iter-tools-es": "7.0.2"
+    "functional-red-black-tree": "1.0.1"
   },
   "devDependencies": {
     "@bablr/boot": "0.11.0",
