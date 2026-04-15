@@ -30,7 +30,6 @@
   "dependencies": {
     "@bablr/agast-helpers": "0.10.10",
     "@bablr/agast-vm-helpers": "0.10.5",
-    "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.2.0",
     "@bablr/stream-iterator": "2.0.0",
     "@iter-tools/imm-stack": "1.2.0",
