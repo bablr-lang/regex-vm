@@ -28,8 +28,8 @@
     ]
   },
   "dependencies": {
-    "@bablr/agast-helpers": "0.11.2",
-    "@bablr/agast-vm-helpers": "0.11.2",
+    "@bablr/agast-helpers": "0.11.3",
+    "@bablr/agast-vm-helpers": "0.11.3",
     "@bablr/pattern-engine": "0.3.0",
     "@bablr/stream-iterator": "3.0.0",
     "@iter-tools/imm-stack": "1.2.0",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#23b94fb3bdfdbc3ac7ed9cb58d7979d8f07dce2b",
-    "@bablr/helpers": "0.26.2",
+    "@bablr/helpers": "0.26.3",
     "enhanced-resolve": "^5.12.0",
     "eslint": "^7.32.0",
     "eslint-import-resolver-enhanced-resolve": "^1.0.5",
