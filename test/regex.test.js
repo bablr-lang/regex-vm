@@ -4,12 +4,13 @@ import { expect } from 'expect';
 import { StreamIterable } from '@bablr/agast-helpers/stream';
 import { streamIteratorSymbol } from '@bablr/stream-iterator';
 import { m } from '@bablr/helpers/grammar';
+import { parseTag, parseTagType } from '@bablr/agast-helpers/builders';
 
 const str = (iter) =>
   iter &&
   [...iter]
     .map((value) => {
-      return value.type === Symbol.for('LiteralTag') ? value.value : '';
+      return parseTagType(value) === Symbol.for('LiteralTag') ? parseTag(value).value : '';
     })
     .join('');
 
