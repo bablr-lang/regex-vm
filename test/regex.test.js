@@ -4,7 +4,7 @@ import { expect } from 'expect';
 import { StreamIterable } from '@bablr/agast-helpers/stream';
 import { streamIteratorSymbol } from '@bablr/stream-iterator';
 import { m } from '@bablr/helpers/grammar';
-import { parseTag, parseTagType } from '@bablr/agast-helpers/builders';
+import { parseTag, parseTagType } from '@bablr/agast-helpers/parsers';
 
 const str = (iter) =>
   iter &&
