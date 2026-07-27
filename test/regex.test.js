@@ -1,7 +1,7 @@
 import { generateMatches } from '@bablr/regex-vm';
 import * as sym from '@bablr/pattern-engine/symbols';
 import { expect } from 'expect';
-import { StreamIterable } from '@bablr/agast-helpers/stream';
+import { StreamIterable } from '@bablr/agast-helpers/iterable';
 import { streamIteratorSymbol } from '@bablr/stream-iterator';
 import { m } from '@bablr/helpers/grammar';
 import { parseTag, parseTagType } from '@bablr/agast-helpers/parsers';
