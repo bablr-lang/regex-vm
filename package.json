@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "agast": "^1.0.0",
     "@bablr/agast-helpers": "0.11.4",
     "@bablr/agast-vm-helpers": "0.11.4",
     "@bablr/pattern-engine": "0.3.0",
